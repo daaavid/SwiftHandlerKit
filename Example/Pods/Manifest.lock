@@ -1,5 +1,5 @@
 PODS:
-  - SwiftHandlerKit (0.1.0)
+  - SwiftHandlerKit (1.0.0)
 
 DEPENDENCIES:
   - SwiftHandlerKit (from `../`)
@@ -9,7 +9,7 @@ EXTERNAL SOURCES:
     :path: ../
 
 SPEC CHECKSUMS:
-  SwiftHandlerKit: b55a433eb4e3365c23c7ac56abdf8175b1928461
+  SwiftHandlerKit: 1bfae9a6c6e36739f12c0875dc32c815e24b4072
 
 PODFILE CHECKSUM: 771a6c2de3a0eff4f2db80264e03466acd42fc26
 

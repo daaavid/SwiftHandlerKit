@@ -6,6 +6,7 @@
 //  Copyright © 2017 David Johnson. All rights reserved.
 //
 import UIKit
+
 private typealias Closure = () -> Void
 private class Handler: NSObject {
   var closure: Closure!
@@ -18,7 +19,9 @@ private class Handler: NSObject {
     closure() 
   }
 }
+
 public protocol SwiftHandlerKitProtocol: class {}
+
 private var kHandlers: UInt8 = 0
 extension SwiftHandlerKitProtocol {
   fileprivate var handlers: Set<Handler> {
@@ -43,14 +46,18 @@ extension SwiftHandlerKitProtocol {
     handlers.removeAll()
   }
 }
+
 extension UIControl: SwiftHandlerKitProtocol {}
 extension SwiftHandlerKitProtocol where Self: UIControl {
-  public func on(_ event: UIControlEvents, do handler: @escaping (Self) -> Void) {
-    let handler = Handler { [unowned self] in handler(self) }
-    addTarget(handler, action: #selector(handler.handle), for: event)
-    handlers.insert(handler)
+  public func on(_ events: UIControlEvents..., do handler: @escaping (Self) -> Void) {
+    events.forEach { event in
+      let handler = Handler { [unowned self] in handler(self) }
+      addTarget(handler, action: #selector(handler.handle), for: event)
+      handlers.insert(handler)
+    }
   }
 }
+
 extension UIBarButtonItem: SwiftHandlerKitProtocol {
   public convenience init(title: String?, style: UIBarButtonItemStyle = .plain, closure: @escaping (UIBarButtonItem) -> Void) {
     let handler = Handler()
@@ -73,6 +80,7 @@ extension UIBarButtonItem: SwiftHandlerKitProtocol {
     handlers.insert(handler)
   }
 }
+
 extension UIGestureRecognizer: SwiftHandlerKitProtocol {
   public convenience init(closure: @escaping (UIGestureRecognizer) -> Void) {
     let handler = Handler()
