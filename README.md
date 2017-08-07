@@ -11,14 +11,14 @@ Super lightweight library (83 lines) to assign closure-based actions to UIContro
 Just use the fuction `.on`, followed by the event on any UIControl to assign an action for that event.
 
 ```
-textField.on(.editingChanged) { [unowned self] textField in
+textField.on(.editingChanged) { textField in
   // no need to cast as UITextField
   print("editingChanged", textField.text!)
 }
 ```
 
 ```
-button.on(.touchUpInside, .touchUpOutside) { [unowned self] button in
+button.on(.touchUpInside, .touchUpOutside) { button in
   //multiple events
   UIView.animate(withDuration: 0.15) {
     button.transform = .identity
@@ -28,9 +28,9 @@ button.on(.touchUpInside, .touchUpOutside) { [unowned self] button in
 
 There's also some support for UIBarButtonItems.
 ```
-navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Back") { [unowned self] barButtonItem in
-      print("leftBarButtonItemWasPressed")
-    }
+navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Back") { barButtonItem in
+  print("leftBarButtonItemWasPressed")
+}
 ```
 
 ## Example
