@@ -10,10 +10,18 @@ import UIKit
 import SwiftHandlerKit
 
 class ViewController: UIViewController {
+  let label = UILabel()
+  
   override func viewDidLoad() {
     super.viewDidLoad()
     
     view.backgroundColor = .white
+    view.addSubview(label)
+    label.frame.size = CGSize(width: view.frame.width, height: 40)
+    label.center = view.center.offsetBy(y: label.frame.size.height * -2)
+    label.textAlignment = .center
+
+    
     
     navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add) { [unowned self] barButtonItem in
       self.presentAlert(withTitle: "rightBarButtonItemWasPressed")
@@ -23,6 +31,8 @@ class ViewController: UIViewController {
       self.presentAlert(withTitle: "leftBarButtonItemWasPressed")
     }
     
+    
+    
     let textField = UITextField()
     view.addSubview(textField)
     
@@ -30,14 +40,18 @@ class ViewController: UIViewController {
     textField.frame.size = CGSize(width: 200, height: 40)
     textField.center = view.center.offsetBy(y: -textField.frame.size.height)
     
-    textField.on(.editingDidBegin) { textField in
+    textField.on(.editingDidBegin) { [unowned self] textField in
       //no need to cast as UITextField
-      print("textFieldEditingDidBegin")
+      print("editingDidBegin")
+      self.label.text = "editingDidBegin" 
     }
     
-    textField.on(.editingChanged) { textField in
-      print("textFieldEditingChanged", textField.text!)
+    textField.on(.editingChanged) { [unowned self] textField in
+      print("editingChanged", textField.text!)
+      self.label.text = "editingChanged " + textField.text! 
     }
+    
+    
 
     let button = UIButton()
     view.addSubview(button)
@@ -47,17 +61,17 @@ class ViewController: UIViewController {
     button.frame.size = textField.frame.size
     button.center = view.center
     
-    button.on(.touchDown) { button in
-      button.setTitle("touchDown", for: .normal)
+    button.on(.touchDown) { [unowned self] button in
       button.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
+      self.label.text = "touchDown"
     }
     
-    button.on(.touchUpInside, .touchUpOutside) { button in
+    button.on(.touchUpInside, .touchUpOutside) { [unowned self] button in
       //multiple events
-      button.setTitle("touchUp", for: .normal)
       UIView.animate(withDuration: 0.15) {
         button.transform = .identity
       }
+      self.label.text = "touchUp"
     }
   }
   
