@@ -5,7 +5,7 @@
 [![License](https://img.shields.io/cocoapods/l/SwiftHandlerKit.svg?style=flat)](http://cocoapods.org/pods/SwiftHandlerKit)
 [![Platform](https://img.shields.io/cocoapods/p/SwiftHandlerKit.svg?style=flat)](http://cocoapods.org/pods/SwiftHandlerKit)
 
-##Usage
+## Usage
 
 Just use the fuction `.on`, followed by the event on any UIControl to assign an action for that event.
 
