@@ -1,0 +1,16 @@
+PODS:
+  - SwiftHandlerKit (0.1.0)
+
+DEPENDENCIES:
+  - SwiftHandlerKit (from `../`)
+
+EXTERNAL SOURCES:
+  SwiftHandlerKit:
+    :path: ../
+
+SPEC CHECKSUMS:
+  SwiftHandlerKit: b55a433eb4e3365c23c7ac56abdf8175b1928461
+
+PODFILE CHECKSUM: 771a6c2de3a0eff4f2db80264e03466acd42fc26
+
+COCOAPODS: 1.3.1

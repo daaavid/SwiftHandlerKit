@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'SwiftHandlerKit_Example' do
+  pod 'SwiftHandlerKit', :path => '../'
+
+  target 'SwiftHandlerKit_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end

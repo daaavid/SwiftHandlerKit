@@ -1,0 +1,22 @@
+{
+  "name": "SwiftHandlerKit",
+  "version": "0.1.0",
+  "summary": "A short description of SwiftHandlerKit.",
+  "description": "TODO: Add long description of the pod here.",
+  "homepage": "https://github.com/daaavid/SwiftHandlerKit",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "daaavid": "david.j.c.johnson@gmail.com"
+  },
+  "source": {
+    "git": "https://github.com/daaavid/SwiftHandlerKit.git",
+    "tag": "0.1.0"
+  },
+  "platforms": {
+    "ios": "8.0"
+  },
+  "source_files": "SwiftHandlerKit/Classes/**/*"
+}
