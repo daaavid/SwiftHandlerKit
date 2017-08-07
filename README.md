@@ -1,5 +1,5 @@
 # SwiftHandlerKit
-'Super lightweight library (83 lines) to assign closure-based actions to UIControls and the like.'
+Super lightweight library (83 lines) to assign closure-based actions to UIControls and the like.
 
 [![CI Status](http://img.shields.io/travis/daaavid/SwiftHandlerKit.svg?style=flat)](https://travis-ci.org/daaavid/SwiftHandlerKit)
 [![Version](https://img.shields.io/cocoapods/v/SwiftHandlerKit.svg?style=flat)](http://cocoapods.org/pods/SwiftHandlerKit)
