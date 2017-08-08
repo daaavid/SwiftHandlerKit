@@ -45,6 +45,12 @@ SwiftHandlerKit is available through [CocoaPods](http://cocoapods.org). To insta
 it, simply add the following line to your Podfile:
 
 ```ruby
+pod 'SwiftHandlerKit'
+```
+
+If you get some sort of spec error, try `pod repo update` or:
+
+```ruby
 pod 'SwiftHandlerKit', :git => 'https://github.com/daaavid/SwiftHandlerKit.git', :branch => 'master'
 ```
 
