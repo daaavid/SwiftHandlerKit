@@ -1,4 +1,5 @@
 # SwiftHandlerKit
+Super lightweight library (83 lines) to assign closure-based actions to UIControls and the like.
 
 [![CI Status](http://img.shields.io/travis/daaavid/SwiftHandlerKit.svg?style=flat)](https://travis-ci.org/daaavid/SwiftHandlerKit)
 [![Version](https://img.shields.io/cocoapods/v/SwiftHandlerKit.svg?style=flat)](http://cocoapods.org/pods/SwiftHandlerKit)
@@ -44,7 +45,13 @@ SwiftHandlerKit is available through [CocoaPods](http://cocoapods.org). To insta
 it, simply add the following line to your Podfile:
 
 ```ruby
-pod "SwiftHandlerKit"
+pod 'SwiftHandlerKit'
+```
+
+If you get some sort of spec error, try `pod repo update` or:
+
+```ruby
+pod 'SwiftHandlerKit', :git => 'https://github.com/daaavid/SwiftHandlerKit.git', :branch => 'master'
 ```
 
 ## Author
