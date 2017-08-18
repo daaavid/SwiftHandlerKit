@@ -67,6 +67,8 @@ UITapGestureRecognizer { tap in
 }.add(to: view)
 ```
 
+Take a peek into `SwiftHandlerKit.swift` if you want to know more about how it works. It's very short and pretty simple! :^)
+
 ## Example
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
