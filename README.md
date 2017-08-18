@@ -5,6 +5,33 @@
 [![License](https://img.shields.io/cocoapods/l/SwiftHandlerKit.svg?style=flat)](http://cocoapods.org/pods/SwiftHandlerKit)
 [![Platform](https://img.shields.io/cocoapods/p/SwiftHandlerKit.svg?style=flat)](http://cocoapods.org/pods/SwiftHandlerKit)
 
+##Usage
+
+Just use the fuction `.on`, followed by the event on any UIControl to assign an action for that event.
+
+```
+textField.on(.editingChanged) { [unowned self] textField in
+  // no need to cast as UITextField
+  print("editingChanged", textField.text!)
+}
+```
+
+```
+button.on(.touchUpInside, .touchUpOutside) { [unowned self] button in
+  //multiple events
+  UIView.animate(withDuration: 0.15) {
+    button.transform = .identity
+  }
+}
+```
+
+There's also some support for UIBarButtonItems.
+```
+navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Back") { [unowned self] barButtonItem in
+      print("leftBarButtonItemWasPressed")
+    }
+```
+
 ## Example
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first.

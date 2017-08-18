@@ -24,10 +24,12 @@ class ViewController: UIViewController {
     
     
     navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add) { [unowned self] barButtonItem in
+      print("rightBarButtonItemWasPressed")
       self.presentAlert(withTitle: "rightBarButtonItemWasPressed")
     }
     
     navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Back") { [unowned self] barButtonItem in
+      print("leftBarButtonItemWasPressed")
       self.presentAlert(withTitle: "leftBarButtonItemWasPressed")
     }
     

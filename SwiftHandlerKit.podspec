@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'SwiftHandlerKit'
-  s.version          = '1.0.0'
+  s.version          = '1.0.1'
   s.summary          = 'Elegantly assign closure-based actions to UIControls and the like.'
   s.homepage         = 'https://github.com/daaavid/SwiftHandlerKit'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
