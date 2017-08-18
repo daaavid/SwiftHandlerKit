@@ -1,5 +1,5 @@
 # SwiftHandlerKit
-Super lightweight library (83 lines) to assign closure-based actions to UIControls and the like.
+Super lightweight library to assign taggable, closure-based actions to UIControls.
 
 [![CI Status](http://img.shields.io/travis/daaavid/SwiftHandlerKit.svg?style=flat)](https://travis-ci.org/daaavid/SwiftHandlerKit)
 [![Version](https://img.shields.io/cocoapods/v/SwiftHandlerKit.svg?style=flat)](http://cocoapods.org/pods/SwiftHandlerKit)
@@ -11,14 +11,14 @@ Super lightweight library (83 lines) to assign closure-based actions to UIContro
 Just use the fuction `.on`, followed by the event on any UIControl to assign an action for that event.
 
 ```
-textField.on(.editingChanged) { [unowned self] textField in
+textField.on(.editingChanged) { textField in
   // no need to cast as UITextField
   print("editingChanged", textField.text!)
 }
 ```
 
 ```
-button.on(.touchUpInside, .touchUpOutside) { [unowned self] button in
+button.on(.touchUpInside, .touchUpOutside) { button in
   //multiple events
   UIView.animate(withDuration: 0.15) {
     button.transform = .identity
@@ -26,11 +26,45 @@ button.on(.touchUpInside, .touchUpOutside) { [unowned self] button in
 }
 ```
 
-There's also some support for UIBarButtonItems.
+The `.on` function returns an `EventHandler` object that contains your action. You can add a `tag` to this EventHandler to identify it.
+
 ```
-navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Back") { [unowned self] barButtonItem in
-      print("leftBarButtonItemWasPressed")
-    }
+let touchUpEventHandler = button.on(.touchUpInside, .touchUpOutside) { button in
+  print(button)
+}
+
+touchUpEventHandler.tag = "buttonTouchUp"
+
+// if you want, you could also do something like this
+
+button.on(.touchDown) { button in
+  print(button)
+}.tag = "touchDown"
+
+```
+
+You can find these EventHandlers later by accessing the `eventHandlers` property (it's a Set) on the ui element you assigned the EventHandler to. You can `subcript` this set with a `tag` to find specific event handlers.
+
+```
+if let touchUpEventHandler = button.eventHandlers["buttonTouchUp"] {
+  button.eventHandlers.remove(touchUpEventHandler)
+}
+```
+
+There's also some support thrown in for UIBarButtonItems. All of the stock UIBarButtonItem inits are now available as closure-based inits.
+
+```
+navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Back") { barButtonItem in
+  print("leftBarButtonItemWasPressed")
+}
+```
+
+You can create UIGestureRecognizers like this as well!
+
+```
+UITapGestureRecognizer { tap in
+  print(tap)
+}.add(to: view)
 ```
 
 ## Example
