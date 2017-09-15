@@ -10,14 +10,14 @@ Super lightweight library to assign taggable, closure-based actions to UIControl
 
 Just use the fuction `.on`, followed by the event on any UIControl to assign an action for that event.
 
-```
+```swift
 textField.on(.editingChanged) { textField in
   // no need to cast as UITextField
   print("editingChanged", textField.text!)
 }
 ```
 
-```
+```swift
 button.on(.touchUpInside, .touchUpOutside) { button in
   //multiple events
   UIView.animate(withDuration: 0.15) {
@@ -28,7 +28,7 @@ button.on(.touchUpInside, .touchUpOutside) { button in
 
 The `.on` function returns an `EventHandler` object that contains your action. You can add a `tag` to this EventHandler to identify it.
 
-```
+```swift
 let touchUpEventHandler = button.on(.touchUpInside, .touchUpOutside) { button in
   print(button)
 }
@@ -45,7 +45,7 @@ button.on(.touchDown) { button in
 
 You can find these EventHandlers later by accessing the `eventHandlers` property (it's a Set) on the ui element you assigned the EventHandler to. You can `subcript` this set with a `tag` to find specific event handlers.
 
-```
+```swift
 if let touchUpEventHandler = button.eventHandlers["buttonTouchUp"] {
   button.eventHandlers.remove(touchUpEventHandler)
 }
@@ -53,7 +53,7 @@ if let touchUpEventHandler = button.eventHandlers["buttonTouchUp"] {
 
 There's also some support thrown in for UIBarButtonItems. All of the stock UIBarButtonItem inits are now available as closure-based inits.
 
-```
+```swift
 navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Back") { barButtonItem in
   print("leftBarButtonItemWasPressed")
 }
@@ -61,7 +61,7 @@ navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Back") { barButtonIte
 
 You can create UIGestureRecognizers like this as well!
 
-```
+```swift
 UITapGestureRecognizer { tap in
   print(tap)
 }.add(to: view)
