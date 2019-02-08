@@ -11,6 +11,7 @@ import SwiftHandlerKit
 
 class ViewController: UIViewController {
   let label = UILabel()
+  var count = 0;
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -63,17 +64,12 @@ class ViewController: UIViewController {
     button.frame.size = textField.frame.size
     button.center = view.center
     
-    button.on(.touchDown) { [unowned self] button in
-      button.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
-      self.label.text = "touchDown"
-    }
     
-    button.on(.touchUpInside, .touchUpOutside) { [unowned self] button in
+    
+    button.on(.touchUpInside, .touchDown) { [unowned self] button in
       //multiple events
-      UIView.animate(withDuration: 0.15) {
-        button.transform = .identity
-      }
-      self.label.text = "touchUp"
+      self.count += 1
+      self.label.text = "touch: \(self.count)"
     }
   }
   
