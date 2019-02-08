@@ -17,7 +17,7 @@ public class EventHandler: NSObject {
     self.closure = closure
   }
   
-  func handle() { closure() }
+  @objc func handle() { closure() }
 }
 
 extension Collection where Self.Iterator.Element: EventHandler {
@@ -47,17 +47,12 @@ extension SwiftHandlerKitProtocol {
   private func setHandlers(_ handlers: Set<EventHandler>) {
     objc_setAssociatedObject(self, &kHandlers, handlers, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
   }
-  
-  @available(*, deprecated, message: "Use '.eventHandlers.removeAll()' instead.")
-  public func removeAllEventHandlers() {
-    eventHandlers.removeAll()
-  }
 }
 
 extension UIControl: SwiftHandlerKitProtocol {}
 extension SwiftHandlerKitProtocol where Self: UIControl {
   @discardableResult
-  public func on(_ events: UIControlEvents..., do handler: @escaping (Self) -> Void) -> EventHandler {
+  public func on(_ events: UIControl.Event..., do handler: @escaping (Self) -> Void) -> EventHandler {
     let handler = EventHandler { [unowned self] in handler(self) }
     eventHandlers.insert(handler)
     events.forEach { event in
@@ -69,21 +64,21 @@ extension SwiftHandlerKitProtocol where Self: UIControl {
 
 extension UIBarButtonItem: SwiftHandlerKitProtocol {
   @discardableResult
-  public convenience init(title: String?, style: UIBarButtonItemStyle = .plain, closure: @escaping (UIBarButtonItem) -> Void) {
+  public convenience init(title: String?, style: UIBarButtonItem.Style = .plain, closure: @escaping (UIBarButtonItem) -> Void) {
     let handler = EventHandler()
     self.init(title: title, style: style, target: handler, action: #selector(handler.handle))
     handler.closure = { [unowned self] in closure(self) }
     eventHandlers.insert(handler)
   }
   
-  public convenience init(image: UIImage?, landscapeImagePhone: UIImage? = nil, style: UIBarButtonItemStyle = .plain, closure: @escaping (UIBarButtonItem) -> Void) {
+  public convenience init(image: UIImage?, landscapeImagePhone: UIImage? = nil, style: UIBarButtonItem.Style = .plain, closure: @escaping (UIBarButtonItem) -> Void) {
     let handler = EventHandler()
     self.init(image: image, landscapeImagePhone: landscapeImagePhone, style: style, target: handler, action: #selector(handler.handle))
     handler.closure = { [unowned self] in closure(self) }
     eventHandlers.insert(handler)
   }
   
-  public convenience init(barButtonSystemItem systemItem: UIBarButtonSystemItem, closure: @escaping (UIBarButtonItem) -> Void) {
+  public convenience init(barButtonSystemItem systemItem: UIBarButtonItem.SystemItem, closure: @escaping (UIBarButtonItem) -> Void) {
     let handler = EventHandler()
     self.init(barButtonSystemItem: systemItem, target: handler, action: #selector(handler.handle))
     handler.closure = { [unowned self] in closure(self) }
@@ -97,16 +92,5 @@ extension UIGestureRecognizer: SwiftHandlerKitProtocol {
     self.init(target: handler, action: #selector(handler.handle))
     handler.closure = { [unowned self] in closure(self) }
     eventHandlers.insert(handler)
-  }
-  
-  /**
-   
-       UITapGestureRecognizer { tap in
-         print(tap)
-       }.add(to: view)
-   
-  */
-  func add(to view: UIView) {
-    view.addGestureRecognizer(self)
   }
 }

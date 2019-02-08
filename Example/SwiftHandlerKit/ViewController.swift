@@ -78,7 +78,7 @@ class ViewController: UIViewController {
   }
   
   func presentAlert(withTitle title: String) {
-    let style: UIAlertControllerStyle = (UIDevice.current.userInterfaceIdiom == .pad) ? .alert : .actionSheet
+    let style: UIAlertController.Style = (UIDevice.current.userInterfaceIdiom == .pad) ? .alert : .actionSheet
     let alert = UIAlertController(title: title, message: nil, preferredStyle: style)
     alert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: nil))
     present(alert, animated: true, completion: nil)
